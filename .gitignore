@@ -25,7 +25,8 @@ dist-ssr
 
 
 # Env file
-.env
+**/.env
+
 
 # Packages installed by npm
 **/node_modules
