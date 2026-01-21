@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# A guide to building a web application with Neo4jAura with a graphql endpoint
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Build a Movie Web Application with Neo4j and GraphQL
 
-Currently, two official plugins are available:
+This tutorial guides you through building a complete web application using Neo4j's DataAPI GraphQL service. You'll learn how to read, create, update, and delete data in a graph database while building a real-world movie management application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What You'll Build
 
-## React Compiler
+By the end of this tutorial, you'll have a fully functional web application that:
+- Displays movies from the Neo4j Movie graph database
+- Allows you to create new movies and people
+- Enables editing existing movies
+- Supports searching across movies, actors, and directors
+- Manages relationships between movies and people
+- Uses GraphQL for efficient data fetching
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What You'll Learn
 
-## Expanding the ESLint configuration
+- How to connect a web application to Neo4j using GraphQL
+- Reading data from a graph database with GraphQL queries
+- Creating and modifying data with GraphQL mutations
+- Managing relationships in a graph database
+- Implementing search functionality across connected data
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Before you begin, make sure you have:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Node.js 18 or later** installed on your computer
+- **A Neo4j Aura account** with a Pro, paid or free trial,  database instance
+- **Basic knowledge** of JavaScript/TypeScript, React and GraphQL
+- **A code editor** like VS Codium
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+If you don't have a Neo4j Aura account, you can [sign up for free Pro trail](https://neo4j.com/cloud/aura-free/).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tutorial Overview
+
+This tutorial is divided into the following chapters:
+
+1. **[Set Up Your Environment](#chapter-1-set-up-your-environment)** - Create your project and configure Neo4j
+2. **[Read Data from Neo4j](#chapter-2-read-data-from-neo4j)** - Display movies from your database
+3. **[Create New Data](#chapter-3-create-new-data)** - Add new movies to your database
+4. **[Update Existing Data](#chapter-4-update-existing-data)** - Edit movie information
+5. **[Delete Data](#chapter-5-delete-data)** - Remove movies from your database
+6. **[Manage Relationships](#chapter-6-manage-relationships)** - Connect actors and directors to movies
+7. **[Search and Filter](#chapter-7-search-and-filter)** - Implement search functionality
+8. **[Deploy Your Application](#chapter-8-deploy-your-application)** - Make your app available online
+
+Let's get started!
+
+---
