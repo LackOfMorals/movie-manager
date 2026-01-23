@@ -2,24 +2,12 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { graphqlClient } from '../lib/graphql-client';
 import { CREATE_MOVIE } from '../graphql/operations';
-import type { MovieFormData } from '../types/movie';
-
-
-interface CreateMovieResponse {
-  createMovies: {
-    movies: Array<{
-      title: string;
-      released?: number;
-      tagline?: string;
-    }>;
-  };
-}
+import type { MovieFormData, CreateMovieResponse } from '../types/movie';
 
 
 interface MovieFormProps {
   onComplete: () => void;
 }
-
 
 export function MovieForm({ onComplete }: MovieFormProps) {
   const queryClient = useQueryClient();

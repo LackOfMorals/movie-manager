@@ -3,7 +3,6 @@ export interface Person {
   born?: number;
 }
 
-
 export interface Movie {
   title: string;
   released?: number;
@@ -11,7 +10,6 @@ export interface Movie {
   peopleActedIn?: Person[];
   peopleDirected?: Person[];
 }
-
 
 export interface MovieFormData {
   title: string;
@@ -24,4 +22,30 @@ export interface PersonFormData {
   born?: number;
 }
 
+export interface CreateMovieResponse {
+  createMovies: {
+    movies: Array<{
+      title: string;
+      released?: number;
+      tagline?: string;
+    }>;
+  };
+}
 
+
+export interface UpdateMovieResponse {
+  updateMovies: {
+    movies: Array<{
+      title: string;
+      released?: number;
+      tagline?: string;
+    }>;
+  };
+}
+
+export interface DeleteMovieResponse {
+  deleteMovies: {
+    nodesDeleted: number;
+    relationshipsDeleted: number;
+  };
+}

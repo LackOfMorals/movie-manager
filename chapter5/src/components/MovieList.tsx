@@ -1,18 +1,13 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { graphqlClient } from '../lib/graphql-client';
 import { GET_MOVIES, DELETE_MOVIE } from '../graphql/operations';
-import type { Movie } from '../types/movie';
+import type { Movie, DeleteMovieResponse } from '../types/movie';
 
 interface GetMoviesResponse {
   movies: Movie[];
 }
 
-interface DeleteMovieResponse {
-  deleteMovies: {
-    nodesDeleted: number;
-    relationshipsDeleted: number;
-  };
-}
+
 
 interface MovieListProps {
   onEdit: (movie: Movie) => void;

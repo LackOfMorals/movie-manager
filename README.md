@@ -2,6 +2,17 @@
 
 This tutorial guides you through building a complete web application using Neo4j's DataAPI GraphQL service. You'll learn how to read, create, update, and delete data in order to build a movie management application.
 
+## But first 
+
+All of the code and the tutorial documents for each chapter is in this repo. 
+
+```
+git clone https://github.com/LackOfMorals/movie-manager.git
+cd movie-manager
+
+```
+
+You can now explorer the code for each chapter and run it.
 
 
 ## A quick introduction to GraphQL and Neo4j
@@ -52,6 +63,7 @@ Before you begin, make sure you have:
 - **A Neo4j Aura account** with a Pro, paid or free trial,  database instance
 - **Basic knowledge** of JavaScript/TypeScript, React and GraphQL
 - **A code editor** like VS Codium
+- **git** To clone this repo so you can run the code 
 
 If you don't have a Neo4j Aura account, you can [sign up for free Pro trail](https://neo4j.com/cloud/aura-free/).
 

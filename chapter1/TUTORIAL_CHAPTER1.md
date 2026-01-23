@@ -2,38 +2,46 @@
 
 In this chapter, you'll set up your development environment, create a React application from templated, and provision a GraphQL Data API for a Neo4j Aura instance. 
 
+> It is assumed that you have a local copy of this repository.  If you have not, then clone it now
+> - ```git clone https://github.com/LackOfMorals/movie-manager.git```
+> 
+> And then move into this chapter
+> - ```cd movie-manager/chapter1```
 
-## Create Your React Application
-
-First, create a new React application with TypeScript support using Vite:
-
-```bash
-npm create vite@latest movie-manager -- --template react-ts
-cd movie-manager
-```
-
-This creates a new directory called `movie-manager` with a basic React + TypeScript setup.  The template website will be running at http://localhost:5173.   Press CTRL+C to stop the website running.
 
 ## Install Required Dependencies
 
-Install the packages you'll need for this tutorial.  Make sure you are in the ```movie-manager``` folder and then. 
+Install the packages you'll need for this tutorial.  Make sure you are in the ```movie-manager/chapter1``` folder and then. 
 
 ```bash
-cd movie-manager
 npm install
-npm install graphql-request graphql
-npm install @tanstack/react-query
-npm install -D @tanstack/react-query-devtools
-npm install -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p
 ```
 
-These packages provide:
+And wait for all of the packages to install.
+
+The packages being installed that are of interest are:- 
 - **graphql-request**: A lightweight GraphQL client for making requests
 - **graphql**: Core GraphQL functionality
 - **@tanstack/react-query**: Powerful data fetching and caching
 - **@tanstack/react-query-devtools**: Development tools for debugging queries
 - **tailwindcss**:  Styling for our application using the popular tailwind package
+
+
+> ℹ️ ***Note*** To setup a React application with all of the needed packages from the very start, do this at a prompt
+> - ```npm create vite@latest movie-manager -- --template react-ts```
+> - ```cd movie-manager```
+> - ```npm install```
+> - ```npm install graphql-request graphql```
+> - ```npm install @tanstack/react-query```
+> - ```npm install -D @tanstack/react-query-devtools```
+> - ```npm install -D tailwindcss@3 postcss autoprefixer```
+> - ```npx tailwindcss init -p```
+
+
+At this point you can check if everything is ok by typing ```npm run dev``` , enter ```http:localhost:5173``` in your browser and you will see a blank web page like this
+
+![](../images/chapter1_browser.png)
+
 
 ## Set Up Your Neo4j Database
 
@@ -42,8 +50,11 @@ These packages provide:
 1. Log in to your [Neo4j Aura Console](https://console.neo4j.io/)
 2. Open your database instance
 3. Select "Connect" and then "Query" to open the Neo4j Browser
+![](../images/chapter1_query_instance.png)
 4. When the  Welcome message is shown, select "Try Neo4j with the Movie Graph"
+![](../images/chapter1_try_movie_graph.png)
 5. Follow the instructions on "Step 2 Create the data". There are several Cypher statements shown.  At the top of those, there is a arrow head in a circle. Select that to create the Movie graph in your database.
+![](../images/chapter1_run_cypher_movie_graph.png)
 
 
 ### Enable DataAPI GraphQL

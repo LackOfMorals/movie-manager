@@ -2,27 +2,7 @@ import { useState, useEffect } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { graphqlClient } from '../lib/graphql-client';
 import { CREATE_MOVIE, UPDATE_MOVIE } from '../graphql/operations';
-import type { Movie, MovieFormData } from '../types/movie';
-
-interface CreateMovieResponse {
-  createMovies: {
-    movies: Array<{
-      title: string;
-      released?: number;
-      tagline?: string;
-    }>;
-  };
-}
-
-interface UpdateMovieResponse {
-  updateMovies: {
-    movies: Array<{
-      title: string;
-      released?: number;
-      tagline?: string;
-    }>;
-  };
-}
+import type { Movie, MovieFormData, CreateMovieResponse,UpdateMovieResponse } from '../types/movie';
 
 interface MovieFormProps {
   movie?: Movie;  // Optional - if provided, we're editing
@@ -125,7 +105,7 @@ export function MovieForm({ movie, onComplete }: MovieFormProps) {
           </p>
         )}
         </div>
-        <div lassName="block text-sm font-medium text-gray-700 mb-2">
+        <div className="block text-sm font-medium text-gray-700 mb-2">
           <label htmlFor="released">Release Year</label>
           <input
             id="released"
@@ -138,7 +118,7 @@ export function MovieForm({ movie, onComplete }: MovieFormProps) {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
           />
         </div>
-        <div lassName="block text-sm font-medium text-gray-700 mb-2">
+        <div className="block text-sm font-medium text-gray-700 mb-2">
           <label htmlFor="tagline">Tagline</label>
           <input
             id="tagline"
