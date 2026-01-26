@@ -1,6 +1,6 @@
 # Chapter 7: Search and Filter
 
-Search is one of the most powerful features in a graph database. In this chapter, you'll implement flexible search across movies, actors, and directors using GraphQL's filtering capabilities.
+Search is one of the most powerful features in a graph database. In this chapter,we'll look at how flexible searching can be implemented using GraphQL's filtering capabilities.
 
 > It is assumed that you have a local copy of this repository.  If you have not, then clone it now
 > - ```git clone https://github.com/LackOfMorals/movie-manager.git```
