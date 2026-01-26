@@ -31,7 +31,7 @@ query {
 
 This query asks for all movies, but only retrieves the `title` and `released` fields for each.
 
-Lets now setup our React application to support GraphQL 
+Let's now set up our React application to support GraphQL 
 
 ## The GraphQL Client
 
@@ -53,14 +53,14 @@ export const graphqlClient = new GraphQLClient(
 
 We are using GraphQLClient from graphql-request, a simple & lightweight GraphQL client, to work with the Neo4j GraphQL DataAPI.  There are others available , such as Apollo Client and Strawberry Shake from Chilli Cream.    
 
-If you are looking for more information for graphql-requst, now known as Graffle, you can find it here [Graffle website](https://graffle.js.org/)
+If you are looking for more information for graphql-request, now known as Graffle, you can find it here [Graffle website](https://graffle.js.org/)
 
-You will notice that our headers does not contain an authorization key / value pair.  This because the Neo4j DataAPI GraphQL endpoint expects to have a header key  **x-api-key** that contains an API Key for authentication. This is found in the download file from creating the DataAPI GraphQL endpoint. 
+You will notice that our headers do not contain an authorization key / value pair.  This is because the Neo4j DataAPI GraphQL endpoint expects to have a header key  **x-api-key** that contains an API Key for authentication. This is found in the download file from creating the DataAPI GraphQL endpoint. 
 
 
 ## React Query
 
-To use GraphQLClient for GraphQL queries and mutataions, we will use react-query from [Tanstack](https://tanstack.com/query/latest).  This is a popular tool that provides a number of capabilites that we will use throughout this project. Of particular interest is the ability to invalidate the results of a query causing the query to be run again.  We will take advantage of this to refresh the page after making a change.  
+To use GraphQLClient for GraphQL queries and mutations, we will use react-query from [Tanstack](https://tanstack.com/query/latest).  This is a popular tool that provides a number of capabilities that we will use throughout this project. Of particular interest is the ability to invalidate the results of a query causing the query to be run again.  We will take advantage of this to refresh the page after making a change.  
 
 You can see how React Query fits in by looking at this code snip from ```src/main.tsx```
 
@@ -113,7 +113,7 @@ export interface Movie {
 ```
 Compare to the two types in the GraphQL schema from Chapter 1
 
-```json
+```graphql
 type Movie @node {
     peopleActedIn: [Person!]! @relationship(type: "ACTED_IN", direction: IN, properties: "ActedInProperties")
     peopleDirected: [Person!]! @relationship(type: "DIRECTED", direction: IN)
@@ -170,7 +170,7 @@ Let's break down what this query does:
 
 - **`query GetMovies`**: Names the query for debugging
 - **Fields like `title`, `released`, `tagline`**: Specifies exactly which data to fetch
-- **peopleActedIn and peopleDirected**: Specifies the relationship between a Movie and its' actors and directors and what fields to obtain. 
+- **peopleActedIn and peopleDirected**: Specifies the relationship between a Movie and its actors and directors and what fields to obtain. 
 
 Executing this query results in a JSON document that will hold each movie, who acted in it and the directors. 
 
@@ -259,7 +259,7 @@ export default App;
 
 Your application should now display movies from your Neo4j database! 
 
-Enter ```npm run dev`` and then open `http://localhost:5173` in your browser.
+Enter `npm run dev` and then open `http://localhost:5173` in your browser.
 
 You should see:
 - A list of movies sorted by release date
@@ -287,6 +287,6 @@ Before moving on, try modifying the query to filter the result
 
 You will find the [Neo4j GraphQL library reference on Filtering ](https://neo4j.com/docs/graphql/current/filtering/) useful for this
 
-**Next**: [Chapter 3: Create New Data]()
+**Next**: [Chapter 3: Create New Data](../chapter3/TUTORIAL_CHAPTER3.md)
 
 ---

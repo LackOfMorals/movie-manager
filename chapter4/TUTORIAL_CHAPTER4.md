@@ -12,7 +12,7 @@ With create functionality in place, let's add the ability to edit existing movie
 
 ## Add the Update Mutation
 
-This time we need the GraphQL mutation to change an existing Movie rather than create an new one.  In `src/graphql/operations.ts` we find this:-
+This time we need the GraphQL mutation to change an existing Movie rather than create a new one.  In `src/graphql/operations.ts` we find this:-
 
 ```typescript
 // Add this after CREATE_MOVIE
@@ -60,16 +60,20 @@ movies {
   tagline
 }
 ```
-Returns the updated movie's fields so we can update the UI if needed e.g showing the user what has changed.  As with creating a new movie, we will need a TypeScipt type  to store this response.  This is found in `/src/types/movie.ts` - `UpdateMovieResponse` 
+Returns the updated movie's fields so we can update the UI if needed e.g showing the user what has changed.  As with creating a new movie, we will need a TypeScript type  to store this response.  This is found in `/src/types/movie.ts` - `UpdateMovieResponse` 
 
 ### Something to watch for
 
-We have used title as the unique identified for a movie.  Beyond our sample data set, these are not necessarily unique.  Since `where` matches by title this could update multiple movies if duplicates exist. In production, you'd typically filter by a unique identifier (like an ID field) rather than title:
+We have used title as the unique identifier for a movie.  Beyond our sample data set, these are not necessarily unique.  Since `where` matches by title this could update multiple movies if duplicates exist. In production, you'd typically filter by a unique identifier (like an ID field) rather than title:
 
 ```graphql
 where: {id: {eq: $id}}
-Example usage
-javascriptupdateMovie({ 
+```
+
+Example usage:
+
+```javascript
+updateMovie({ 
   variables: { 
     title: "The Matrix",
     tagline: "Free your mind",
@@ -78,11 +82,11 @@ javascriptupdateMovie({
 });
 ```
 
-This is also why our Movie Manager application does not allow an existing Movie Title to be changed.  To do so risks a collison with an existing one so we would need a mechanism to deal with it or use something different as an unique id. 
+This is also why our Movie Manager application does not allow an existing Movie Title to be changed.  To do so risks a collision with an existing one so we would need a mechanism to deal with it or use something different as a unique id. 
 
 ## The Movie Form
 
-Our Movie form, `src/components/MovieForm.tsx` has been changed to allow for modification of an existing movie.   Lets examine those changes. 
+Our Movie form, `src/components/MovieForm.tsx` has been changed to allow for modification of an existing movie.   Let's examine those changes. 
 
 
 ### Two mutations, one form
@@ -136,7 +140,7 @@ useEffect(() => {
 
 When editing, the existing movie data populates the form. This data originally came from a GraphQL query elsewhere in the app.
 
-> Caution: `useEffect()` will fire when the object , `movie` changes.  If `movie` gets updated elsewhere e.g a re-render happens and a new `movie` object is created, then `useEffect()` will run and wipe out any edits the user made.  It would be better to tie `useEffect()` to a field e.g `[movie?.id]`.  Just be careful. 
+> Caution: `useEffect()` will fire when the object `movie` changes.  If `movie` gets updated elsewhere e.g a re-render happens and a new `movie` object is created, then `useEffect()` will run and wipe out any edits the user made.  It would be better to tie `useEffect()` to a field e.g `[movie?.id]`.  Just be careful. 
 
 
 ### Tracking combined pending state
@@ -186,6 +190,6 @@ Enhance the update functionality:
 4. What's the potential risk with the implementation of setFormData() within setEffect()  ?
 
 
-**Next**: [Chapter 5: Delete Data](/chapter5/TUTORIAL_CHAPTER5.md)
+**Next**: [Chapter 5: Delete Data](../chapter5/TUTORIAL_CHAPTER5.md)
 
 ---

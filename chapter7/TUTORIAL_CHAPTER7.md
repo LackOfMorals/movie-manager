@@ -1,6 +1,6 @@
 # Chapter 7: Search and Filter
 
-Search is one of the most powerful features in a graph database. In this chapter,we'll look at how flexible searching can be implemented using GraphQL's filtering capabilities.
+Search is one of the most powerful features in a graph database. In this chapter, we'll look at how flexible searching can be implemented using GraphQL's filtering capabilities.
 
 > It is assumed that you have a local copy of this repository.  If you have not, then clone it now
 > - ```git clone https://github.com/LackOfMorals/movie-manager.git```
@@ -52,7 +52,7 @@ For searching in Movie Manager, we will allow for filters on title or tagline.  
 
 
 ## Adding Search To Movie Manager
-As seen in previous chapters, searching will be primarily contained with a component - `/src/components/Search.tsx`. Lets take a look into how GraphQL is being used within it.
+As seen in previous chapters, searching will be primarily contained within a component - `/src/components/Search.tsx`. Let's take a look at how GraphQL is being used within it.
 
 
 ### Query with dynamic variables
@@ -74,7 +74,9 @@ The SEARCH_ALL operation receives searchTerm as a variable. This maps to our Gra
 `queryKey: ['search', activeSearch]` each unique search term gets its own cache entry. Searching "Matrix" then "Hanks" then "Matrix" again — that third search returns instantly from cache rather than hitting our GraphQL endpoint.
 
 ### Two-stage state pattern
-```const [searchTerm, setSearchTerm] = useState('');
+
+```javascript
+const [searchTerm, setSearchTerm] = useState('');
 const [activeSearch, setActiveSearch] = useState('');
 
 const handleSearch = (e: React.FormEvent) => {
@@ -97,7 +99,7 @@ interface SearchResponse {
 }
 ```
 
-The query returns movies with their relationships (peopleActedIn, peopleDirected) already included — a single GraphQL query fetches the movie nodes and traverses to connected people nodes in one request. This is where graph databases have an advatage compared to REST, where you'd typically need multiple round trips.
+The query returns movies with their relationships (peopleActedIn, peopleDirected) already included — a single GraphQL query fetches the movie nodes and traverses to connected people nodes in one request. This is where graph databases have an advantage compared to REST, where you'd typically need multiple round trips.
 
 ## Test Search Functionality
 
@@ -117,14 +119,33 @@ Try different searches:
 ✅ Handling empty search results
 
 
-## Try It Yourself
+## Extra
 
 Enhance the search:
 
 1. Add sorting options (by title, year, relevance)
-2. Implement search suggestions as user types.
+2. Implement search suggestions as user types
 3. Add filters for release year ranges
 4. Show search history
 
+---
+
+## Congratulations!
+
+You've completed the Movie Manager tutorial! You now have a fully functional web application that demonstrates the core concepts of building with Neo4j and GraphQL.
+
+### What You've Built
+
+✅ A React application connected to Neo4j via GraphQL  
+✅ Full CRUD operations (Create, Read, Update, Delete)  
+✅ Relationship management between movies and people  
+✅ Search functionality with GraphQL filtering  
+
+### Where To Go From Here
+
+- Explore the [Neo4j GraphQL Library documentation](https://neo4j.com/docs/graphql/current/)
+- Take courses at [Neo4j GraphAcademy](https://graphacademy.neo4j.com/)
+- Add authentication to protect your API
+- Deploy your application to production
 
 ---

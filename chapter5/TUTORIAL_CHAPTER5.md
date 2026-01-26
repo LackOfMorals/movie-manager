@@ -40,7 +40,7 @@ export const DELETE_MOVIE = gql`
 `;
 ```
 
-This mutation deletes a movie record. Lets look at what each part does:
+This mutation deletes a movie record. Let's look at what each part does:
 
 ### The variable
 
@@ -52,7 +52,7 @@ deleteMovies(where: { title: { eq: $title } })
 ```
 Uses the same where filter pattern as the update mutation — it finds movies where the title exactly matches the provided value, then deletes them.
 
-Since where matches by title, this would delete all movies with that title if duplicates exist. In Chapter 4 we discussed the use of title as an unique Id and how it would be better to use something else for production applications. 
+Since where matches by title, this would delete all movies with that title if duplicates exist. In Chapter 4 we discussed the use of title as a unique ID and how it would be better to use something else for production applications. 
 
 ### The return block
 `nodesDeleted`
@@ -115,7 +115,7 @@ disabled={deleteMovieMutation.isPending}
   ? 'Deleting...' 
   : 'Delete'}
 ```
-Since we're rendering multiple delete buttons (one per movie), we need to prevent all of the movies "Delete" buttons changing to "Deleting..." as this may cause a small degree of alarm.  To only show "Deleting..." for the movies being deleted, we use the values from deleteMovieMutation.variables. We can do this as TanStack Query stores the variables from the most recent mutate() call, letting you identify which record is being processed. 
+Since we're rendering multiple delete buttons (one per movie), we need to prevent all of the movies' "Delete" buttons changing to "Deleting..." as this may cause a small degree of alarm.  To only show "Deleting..." for the movies being deleted, we use the values from deleteMovieMutation.variables. We can do this as TanStack Query stores the variables from the most recent mutate() call, letting you identify which record is being processed. 
 
 
 ## Test the Delete Functionality
@@ -146,6 +146,6 @@ Enhance the delete functionality:
 3. Add the ability to delete multiple movies at once (batch deletion)
 
 
-**Next**: [Chapter 6: Manage Relationships](/chapter6/TUTORIAL_CHAPTER6.md)
+**Next**: [Chapter 6: Manage Relationships](../chapter6/TUTORIAL_CHAPTER6.md)
 
 ---

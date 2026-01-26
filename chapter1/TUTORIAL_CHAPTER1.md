@@ -1,6 +1,6 @@
 # Chapter 1: Set Up Your Environment
 
-In this chapter, you'll set up your development environment, create a React application from templated, and provision a GraphQL Data API for a Neo4j Aura instance. 
+In this chapter, you'll set up your development environment, create a React application from a template, and provision a GraphQL Data API for a Neo4j Aura instance. 
 
 > It is assumed that you have a local copy of this repository.  If you have not, then clone it now
 > - ```git clone https://github.com/LackOfMorals/movie-manager.git```
@@ -11,7 +11,7 @@ In this chapter, you'll set up your development environment, create a React appl
 
 ## Install Required Dependencies
 
-Install the packages you'll need for this tutorial.  Make sure you are in the ```movie-manager/chapter1``` folder and then. 
+Install the packages you'll need for this tutorial.  Make sure you are in the ```movie-manager/chapter1``` folder. 
 
 ```bash
 npm install
@@ -38,7 +38,7 @@ The packages being installed that are of interest are:-
 > - ```npx tailwindcss init -p```
 
 
-At this point you can check if everything is ok by typing ```npm run dev``` , enter ```http:localhost:5173``` in your browser and you will see a blank web page like this
+At this point you can check if everything is ok by typing ```npm run dev``` , enter `http://localhost:5173` in your browser and you will see a blank web page like this
 
 ![](../images/chapter1_browser.png)
 
@@ -53,7 +53,7 @@ At this point you can check if everything is ok by typing ```npm run dev``` , en
 ![](../images/chapter1_query_instance.png)
 4. When the  Welcome message is shown, select "Try Neo4j with the Movie Graph"
 ![](../images/chapter1_try_movie_graph.png)
-5. Follow the instructions on "Step 2 Create the data". There are several Cypher statements shown.  At the top of those, there is a arrow head in a circle. Select that to create the Movie graph in your database.
+5. Follow the instructions on "Step 2 Create the data". There are several Cypher statements shown.  At the top of those, there is an arrow head in a circle. Select that to create the Movie graph in your database.
 ![](../images/chapter1_run_cypher_movie_graph.png)
 
 
@@ -66,9 +66,9 @@ At this point you can check if everything is ok by typing ```npm run dev``` , en
 	- Instance: <The name of your Neo4j instance with the Movie Graph>
 	- Instance permissions: Choose "Read & Write"
 	- Select "Enable introspection"
-	- Type defintions:  Copy and paste the following
+	- Type definitions:  Copy and paste the following
 
-```typescript
+```graphql
 type ActedInProperties @relationshipProperties {
     roles: [String!]!
 }
@@ -107,7 +107,7 @@ type ReviewedProperties @relationshipProperties {
 	- Under Authentication Providers, select "Add authentication provider".  
 	- Make sure Type is set to "API Key" and enter a name of "MovieGraphQLKey".  This will control access. 
 	- Select "Create"
-4. Select "Download and continue" to download connnection information to a local text file. 
+4. Select "Download and continue" to download connection information to a local text file. 
 5. The creation process will take a few minutes. 
 
 
@@ -152,6 +152,6 @@ If everything works, you're ready to move on to the next chapter!
 ✅ Set up a Neo4j database with the Movies dataset  
 ✅ Enabled DataAPI GraphQL  
  
-**Next**: [Chapter 2: Read Data from Neo4j](#chapter-2-read-data-from-neo4j)
+**Next**: [Chapter 2: Read Data from Neo4j](../chapter2/TUTORIAL_CHAPTER2.md)
 
 ---

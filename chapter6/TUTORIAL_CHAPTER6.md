@@ -125,9 +125,14 @@ const { data: peopleData, isLoading: peopleLoading } = useQuery({
   queryFn: async () =>
     graphqlClient.request<GetPeopleResponse>(GET_PEOPLE, { limit: 200 })
 });
+```
+
 A query populates the dropdown with people who can be assigned. This runs independently of the mutations.
-Parallel mutation setup
-javascriptconst assignActorMutation = useMutation({
+
+### Parallel mutation setup
+
+```javascript
+const assignActorMutation = useMutation({
   mutationFn: async (variables: { movieTitle: string; actorName: string }) =>
     graphqlClient.request(ASSIGN_ACTOR, variables),
   // ...
@@ -161,7 +166,8 @@ const handleAssign = () => {
 ```
 
 The UI uses a single "Add" button, but dispatches to different GraphQL mutations based on the selected relationship type.
-Same pattern for removals
+
+### Same pattern for removals
 
 ```javascript
 const handleRemove = (personName: string, type: 'actor' | 'director') => {
@@ -180,8 +186,8 @@ const handleRemove = (personName: string, type: 'actor' | 'director') => {
 ```
 
 ### Cache invalidation triggers list refresh
-```javascripton
-Success: () => {
+```javascript
+onSuccess: () => {
   queryClient.invalidateQueries({ queryKey: ['movies'] });
   onComplete();
 }
@@ -228,7 +234,7 @@ Enhance relationship management:
 1. Add relationship properties (e.g., roles for actors)
 2. Create a dedicated "People" view to manage all people
 
-**Next**: [Chapter 7: Search and Filter](/chapter7/TUTORIAL_CHAPTER7.md)
+**Next**: [Chapter 7: Search and Filter](../chapter7/TUTORIAL_CHAPTER7.md)
 
 
 ---

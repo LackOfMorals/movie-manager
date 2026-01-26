@@ -78,7 +78,7 @@ export const CREATE_PERSON = gql`
 `;
 ```
 
-Lets break down the CreatePerson mutation 
+Let's break down the CreatePerson mutation 
 
 This mutation creates a new person record in the database. Here's what each part does:
 
@@ -92,8 +92,8 @@ The mutation itself
 - ***input: [{ ... }]*** — Takes an array of objects, so you could technically create multiple people at once, but here we're just creating one
 
 The return block
-```JSON
-graphqlpeople {
+```graphql
+people {
   name
   born
 }
@@ -116,7 +116,7 @@ The plural naming (createPeople, people) follows Neo4j GraphQL's convention of u
 
 ## The Form To Capture A New Movie
 
-As we're using TypeScipt, `src/types/movie.ts` now hold two new types that are needed for new Movies and Persons. Also recall that a mutation always sends back or more fields.  This means we also a type to hold the response.  
+As we're using TypeScript, `src/types/movie.ts` now holds two new types that are needed for new Movies and Persons. Also recall that a mutation always sends back one or more fields.  This means we also need a type to hold the response.  
 
 Along with TypeScript types, a form is required for the user to input the needed values.  This will be the `src/components/MovieForm.tsx` component. 
 
@@ -125,7 +125,7 @@ Looking at `src/components/MovieForm.tsx` we observe
 
 ### The imports
 ```typescript
-javascriptimport { graphqlClient } from '../lib/graphql-client';
+import { graphqlClient } from '../lib/graphql-client';
 import { CREATE_MOVIE } from '../graphql/operations';
 ```
 
@@ -192,11 +192,11 @@ Launch our Movie Manager with `npm run dev`
 
 Now Try creating a new movie:
 
-1. Click "Add Movie" in the navigation ( If you interested to see the React that does this, take a look  in `src/App.tsx` )
-![](/images/chapter3_new_movie.png)
+1. Click "Add Movie" in the navigation ( If you're interested to see the React that does this, take a look  in `src/App.tsx` )
+![](../images/chapter3_new_movie.png)
 
 2. Enter a title (required field)
-3. Add a release year (requierd field) and optionally, a tagline
+3. Add a release year (required field) and optionally, a tagline
 4. Click "Create Movie"
 5. You should be redirected to the movie list
 6. Your new movie should appear in the list, likely to be at the bottom of the page
@@ -221,7 +221,7 @@ Extend the Movie Manager app with:
 3. Adding a success message after creating a movie
 4. Dealing with the error when a user tries to enter a movie that already exists with the same title. 
 
-**Next**: [Chapter 4: Updating Existing Data](/chapter4/TUTORIAL_CHAPTER4.md)
+**Next**: [Chapter 4: Update Existing Data](../chapter4/TUTORIAL_CHAPTER4.md)
 
 ---
 
