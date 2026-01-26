@@ -1,6 +1,6 @@
 # Chapter 5: Delete Data
 
-Let's add the ability to remove movies from your database. You'll learn about delete mutations and implementing user confirmations to prevent accidental deletions.
+Let's add the ability to remove movies from the database. You'll learn about delete mutations and implementing user confirmations to prevent accidental deletions.
 
 > It is assumed that you have a local copy of this repository.  If you have not, then clone it now
 > - ```git clone https://github.com/LackOfMorals/movie-manager.git```
@@ -52,32 +52,21 @@ deleteMovies(where: { title: { eq: $title } })
 ```
 Uses the same where filter pattern as the update mutation — it finds movies where the title exactly matches the provided value, then deletes them.
 
-Since where matches by title, this would delete all movies with that title if duplicates exist. In production you'd typically use a unique identifier e.g :
-```graphql
-where: {id: {eq: $id}}
-Example usage
-javascriptdeleteMovie({ 
-  variables: { 
-    title: "The Matrix" 
-  } 
-});
-
-```
+Since where matches by title, this would delete all movies with that title if duplicates exist. In Chapter 4 we discussed the use of title as an unique Id and how it would be better to use something else for production applications. 
 
 ### The return block
 `nodesDeleted`
 
 Instead of returning the deleted movie's fields (which no longer exist), this returns a count of how many records were removed.  Useful for confirming the deletion worked and for UI feedback like "1 movie deleted."
 
-With create and update mutations, you return the affected record's fields to update your UI cache. With delete, the record is gone — so nodesDeleted gives you just enough information to confirm success and trigger a refetch of your movie list.To run code, enable code execution and file creation in Settings > Capabilities.
-
+With create and update mutations, you return the affected record's fields to update the UI cache. With delete, the record is gone — so `nodesDeleted` gives just enough information to confirm success and trigger a refetch of the movie list. 
 
 This mutation:
 - Uses a `where` clause to find the movie by title
 - Returns `nodesDeleted` (number of nodes removed).  Recall that you always have to return _something_ after a mutation. 
 
 
-## A Delete Button
+### A Delete Button
 `src/components/MovieList.tsx` contains our delete functionality
 
 ```javascript
@@ -88,7 +77,7 @@ const deleteMovieMutation = useMutation({
 });
 ```
 
-Unlike the create/update mutations that pass a full formData object, delete just needs the title string. It gets wrapped into { title } to match the mutation's expected variables.
+Unlike the create/update mutations that pass a full formData object, delete just needs the title string. It gets wrapped into `{ title }` to match the mutation's expected variables.
 
 ### Using the response data
 ```javascript
@@ -104,6 +93,7 @@ onSuccess: (data) => {
 The GraphQL response includes both nodesDeleted and relationshipsDeleted — Neo4j GraphQL automatically reports how many relationships (like actor and director connections) were cleaned up when the movie node was removed. This is useful for logging, debugging, or showing the user what happened.
 
 ### Triggering the delete
+
 ```javascript
 const handleDelete = (movie: Movie) => {
   const confirmed = window.confirm(/* ... */);
@@ -116,7 +106,8 @@ const handleDelete = (movie: Movie) => {
 
 The mutation takes just the title string directly — simpler than create/update since there's no other data to pass.
 
-### Tracking which item is being deleted
+### Tracking which item is being deleted
+
 ```javascript
 disabled={deleteMovieMutation.isPending}
 // ...
@@ -124,7 +115,7 @@ disabled={deleteMovieMutation.isPending}
   ? 'Deleting...' 
   : 'Delete'}
 ```
-Since we're rendering multiple delete buttons (one per movie), this checks deleteMovieMutation.variables to show "Deleting..." only on the specific button that was clicked. TanStack Query stores the variables from the most recent mutate() call, letting you identify which record is being processed. 
+Since we're rendering multiple delete buttons (one per movie), we need to prevent all of the movies "Delete" buttons changing to "Deleting..." as this may cause a small degree of alarm.  To only show "Deleting..." for the movies being deleted, we use the values from deleteMovieMutation.variables. We can do this as TanStack Query stores the variables from the most recent mutate() call, letting you identify which record is being processed. 
 
 
 ## Test the Delete Functionality

@@ -221,7 +221,7 @@ Extend the Movie Manager app with:
 3. Adding a success message after creating a movie
 4. Dealing with the error when a user tries to enter a movie that already exists with the same title. 
 
-**Next**: [Chapter 4: Update Existing Data](/chapter4/TUTORIAL_CHAPTER4.md)
+**Next**: [Chapter 4: Updating Existing Data](/chapter4/TUTORIAL_CHAPTER4.md)
 
 ---
 

@@ -12,10 +12,13 @@ cd movie-manager
 
 ```
 
-You can now explorer the code for each chapter and run it.
+In this Tutorial, Movie Manager grows iteratively across the Chapters with each chapter having it's own copy of Movie Manager at that stage of development.  The tutorial contenct for each chapter discusses and highlights the use of GraphQL with React. 
 
+If you follow the Chapters in sequence, you will be able to see the changes take place. 
 
-## A quick introduction to GraphQL and Neo4j
+Lets start by familarising ourselves with GraphQL and Neo4j. 
+
+## A quick introduction to GraphQL and Neo4j
 
 GraphQL is an API query language and runtime for building APIs originally built by Facebook. GraphQL queries allow you to describe your data, ask for what you want, and then deliver predictable results - it's essentially a mechanism that describes an API and a way to query it. It is important to understand that GraphQL is fundamentally based on a graph data model that treats your data as a collection of nodes and edges ( edges being relationships ).  Does this mean that GraphQL requires a graph database ? No, GraphQL is agnostic as to how the underlying data is held.  It could be in relationship database like Oracle, a noSQL one like Couchbase or even in a text file but it presents as a graph of connected data. 
 
@@ -72,13 +75,12 @@ If you don't have a Neo4j Aura account, you can [sign up for free Pro trail](htt
 This tutorial is divided into the following chapters:
 
 1. **[Set Up Your Environment](./chapter1/TUTORIAL_CHAPTER1.md)** - Create your project and configure Neo4j
-2. **[Read Data from Neo4j](#chapter-2-read-data-from-neo4j)** - Display movies from your database
-3. **[Create New Data](#chapter-3-create-new-data)** - Add new movies to your database
-4. **[Update Existing Data](#chapter-4-update-existing-data)** - Edit movie information
-5. **[Delete Data](#chapter-5-delete-data)** - Remove movies from your database
-6. **[Manage Relationships](#chapter-6-manage-relationships)** - Connect actors and directors to movies
-7. **[Search and Filter](#chapter-7-search-and-filter)** - Implement search functionality
-8. **[Deploy Your Application](#chapter-8-deploy-your-application)** - Make your app available online
+2. **[Read Data from Neo4j](./chapter2/TUTORIAL_CHAPTER2.md)** - Display movies from your database
+3. **[Create New Data](./chapter3/TUTORIAL_CHAPTER3.md)** - Add new movies to your database
+4. **[Update Existing Data](./chapter4/TUTORIAL_CHAPTER4.md)** - Edit movie information
+5. **[Delete Data](./chapter5/TUTORIAL_CHAPTER5.md)** - Remove movies from your database
+6. **[Manage Relationships](./chapter6/TUTORIAL_CHAPTER6.md)** - Connect actors and directors to movies
+7. **[Search and Filter](./chapter7/TUTORIAL_CHAPTER7.md)** - Implement search functionality
 
 Let's get started!
 

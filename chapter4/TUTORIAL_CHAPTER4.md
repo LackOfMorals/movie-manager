@@ -1,6 +1,6 @@
-# Chapter 4: Update Existing Data
+# Chapter 4: Updating Existing Data
 
-With create functionality in place, let's add the ability to edit existing movies. You'll learn about mutation variables, conditional rendering, and updating your UI optimistically.
+With create functionality in place, let's add the ability to edit existing movies. You'll learn about mutation variables, conditional rendering, and updating the UI optimistically.
 
 > It is assumed that you have a local copy of this repository.  If you have not, then clone it now
 > - ```git clone https://github.com/LackOfMorals/movie-manager.git```
@@ -49,8 +49,8 @@ updateMovies(
 ```
 Two key parts here:
 
-- ***where:*** A filter clause that finds which movie(s) to update. {title: {eq: $title}} means "where title equals this value". This targets movies by exact title match.
-- ***update:*** Specifies what to change using set operations. This syntax ({set: $value}) is Neo4j GraphQL's way of handling updates — it's explicit about the operation type, which allows for other operations like increment on numbers or push on arrays.
+- ***where:*** A filter clause that finds which movie(s) to update. `{title: {eq: $title}}` means "where title equals this value". This targets movies by exact title match.
+- ***update:*** Specifies what to change using set operations. This syntax `({set: $value})` is Neo4j GraphQL's way of handling updates — it's explicit about the operation type, which allows for other operations like increment on numbers or push on arrays.
 
 ### The return block
 ```graphql
@@ -60,11 +60,11 @@ movies {
   tagline
 }
 ```
-Returns the updated movie's fields so you can confirm the changes and update the UI.  As with creating a new movie, we will need TypeScipt type that will be used to store this response.  This is found in `/src/types/movie.ts` - `UpdateMovieResponse` 
+Returns the updated movie's fields so we can update the UI if needed e.g showing the user what has changed.  As with creating a new movie, we will need a TypeScipt type  to store this response.  This is found in `/src/types/movie.ts` - `UpdateMovieResponse` 
 
 ### Something to watch for
 
-We have used title as the unique identified for a movie.  Beyond our sample data set, this are notnecessarily unique.  Since `where` matches by title this could update multiple movies if duplicates exist. In production, you'd typically filter by a unique identifier (like an ID field) rather than title:
+We have used title as the unique identified for a movie.  Beyond our sample data set, these are not necessarily unique.  Since `where` matches by title this could update multiple movies if duplicates exist. In production, you'd typically filter by a unique identifier (like an ID field) rather than title:
 
 ```graphql
 where: {id: {eq: $id}}
@@ -78,13 +78,11 @@ javascriptupdateMovie({
 });
 ```
 
-This is also why our Movie Manager application does not allow an existing Movie Title to be changed.  To do so risks this clash so we would need a mechanism to deal with it or use something else as an unique id. 
+This is also why our Movie Manager application does not allow an existing Movie Title to be changed.  To do so risks a collison with an existing one so we would need a mechanism to deal with it or use something different as an unique id. 
 
 ## The Movie Form
 
-Our Movie form, `src/components/MovieForm.tsx` will require changes to allow for modification of an existing movie along with the addition of a button to `src/components/MoveList.tsx` before bringing everything together in `src/App.tsx`.
-
-The MovieForm is an extended version of the form that handles both creating and updating movies and is of greater interest than the other two. 
+Our Movie form, `src/components/MovieForm.tsx` has been changed to allow for modification of an existing movie.   Lets examine those changes. 
 
 
 ### Two mutations, one form
@@ -138,6 +136,9 @@ useEffect(() => {
 
 When editing, the existing movie data populates the form. This data originally came from a GraphQL query elsewhere in the app.
 
+> Caution: `useEffect()` will fire when the object , `movie` changes.  If `movie` gets updated elsewhere e.g a re-render happens and a new `movie` object is created, then `useEffect()` will run and wipe out any edits the user made.  It would be better to tie `useEffect()` to a field e.g `[movie?.id]`.  Just be careful. 
+
+
 ### Tracking combined pending state
 ```javascript
 const isPending = createMovieMutation.isPending || updateMovieMutation.isPending;
@@ -149,7 +150,7 @@ Since only one mutation runs at a time, this combines both states for simpler UI
 ```javascript
 disabled={isEditing}
 ```
-Because UPDATE_MOVIE uses title in its where clause to find the record, changing it would break the update. The form prevents this by disabling the title field when editing — a UI constraint driven by how the GraphQL mutation is designed.To run code, enable code execution and file creation in Settings > Capabilities.
+Because UPDATE_MOVIE uses title in its where clause to find the record, changing it would break the update. The form prevents this by disabling the title field when editing — a UI constraint driven by how the GraphQL mutation is designed. 
 
 
 
@@ -173,6 +174,7 @@ Try editing a movie:
 ✅ Disabling fields during editing  
 ✅ Managing UI state for different views  
 ✅ Combining multiple mutations in one component
+✅ Consider how `useEffect()` is triggered
 
 ## Extras
 

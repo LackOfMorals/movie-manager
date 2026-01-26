@@ -29,7 +29,7 @@ query {
 }
 ```
 
-This query asks for all movies, but only retrieves the `title` and `released` fields.
+This query asks for all movies, but only retrieves the `title` and `released` fields for each.
 
 Lets now setup our React application to support GraphQL 
 
@@ -53,9 +53,9 @@ export const graphqlClient = new GraphQLClient(
 
 We are using GraphQLClient from graphql-request, a simple & lightweight GraphQL client, to work with the Neo4j GraphQL DataAPI.  There are others available , such as Apollo Client and Strawberry Shake from Chilli Cream.    
 
-If you are looking for more information for graphql-requst, now know as Graffle, you can find it here [Graffle website](https://graffle.js.org/)
+If you are looking for more information for graphql-requst, now known as Graffle, you can find it here [Graffle website](https://graffle.js.org/)
 
-You will notice that our headers does not contain an authorization key / value pair.  This because the Neo4j DataAPI GraphQL endpoint expects to have a header key  **x-api-key** that contains an API Key for authentication. This is found in the download file when you create the DataAPI GraphQL endpoint. 
+You will notice that our headers does not contain an authorization key / value pair.  This because the Neo4j DataAPI GraphQL endpoint expects to have a header key  **x-api-key** that contains an API Key for authentication. This is found in the download file from creating the DataAPI GraphQL endpoint. 
 
 
 ## React Query
